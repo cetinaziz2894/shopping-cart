@@ -1,10 +1,14 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
   <router-view/>
 </template>
+
+<script>
+export default {
+  mounted(){
+    this.$store.commit('updateCartFromLocalStorage')
+  }
+}
+</script>
 
 <style lang="scss">
 #app {
@@ -13,18 +17,19 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100vh;
 }
 
-#nav {
-  padding: 30px;
+html, body {
+  margin: 0;
+  padding: 0;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+body {
+  background-color: rgb(255, 255, 255);
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.text-center{
+  text-align: center;
 }
 </style>

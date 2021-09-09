@@ -10,7 +10,12 @@ function updateLocalStorage(cart) {
 
 export default createStore({
   state: {
-    cart: []
+    cart: [],
+    loader:false,
+    message:{
+      status:null,
+      message:null
+    }
   },
   getters: {
     productQuantity: state => product => {
@@ -21,6 +26,14 @@ export default createStore({
     },
     cartItems: state => {
       return state.cart
+    },
+    changeLoader: state => value => {
+      return state.loader = value
+    },
+    changeMessage: state => value => {
+      state.message.message = value.message
+      state.message.status = value.status
+      return
     }
   },
   mutations: {
@@ -42,7 +55,6 @@ export default createStore({
       if (item) {
         state.cart = state.cart.filter(i => i.id !== product.id)
       }
-      console.log(this.getters.cartItems)
       if(!this.getters.cartItems.length){
         updateLocalStorage(state.cart)
         router.push('/');
@@ -57,6 +69,10 @@ export default createStore({
           item.quantity--
         }
       }
+      updateLocalStorage(state.cart)
+    },
+    emptyCartFromLocalStorage(state){
+      state.cart = []
       updateLocalStorage(state.cart)
     },
     updateCartFromLocalStorage(state){

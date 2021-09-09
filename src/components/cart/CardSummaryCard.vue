@@ -1,6 +1,5 @@
 <template>
   <div class="cart-item-card">
-    <div v-if="loading">Loading...</div>
     <div class="buttons">
       <button class="view-product-button button" @click="$router.push('/')">
         &#60; CONTINUE SHOPPING
@@ -18,36 +17,26 @@ import axios from "axios";
 export default {
   data() {
     return {
-      cart: null,
-      pending: true,
-      error: false,
-      errorMessage:'',
-      loading: false
+      cart: null
     };
   },
   methods: {
     async placeOrder() {
-      this.cart = this.$store.state.cart;
-      console.log(this.cart);
-      this.loading = true;
+      this.cart = this.$store.state.cart
+      this.$store.getters.changeLoader(true)
+      const url ="https://nonchalant-fang.glitch.me/order";
       try {
-        await axios.post(
-          "https://nonchalant-fang.glitch.me/order",
+        const { data } = await axios.post(url,
           this.cart
         );
-        this.error = false;
-        this.loading =false;
+        this.$store.getters.changeLoader(false)
+        this.$store.getters.changeMessage(data)
       } catch (e) {
         if (e.response.status === 404) {
-          console.log("girdi");
-          this.error = true;
-          this.errorMessage = e.response.data.message
-          console.log(this.error);
-          console.log(this.errorMessage);
-          this.loading=false
+          this.$store.getters.changeLoader(false)
+          this.$store.getters.changeMessage(e.response.data)
         }
       }
-      this.pending = false;
     },
   },
 };
@@ -60,7 +49,7 @@ export default {
   align-items: center;
   height: 80px;
   width: 100%;
-  box-shadow: 0px 0 10px rgba(170, 170, 170, 0.8);
+  box-shadow: 0px 0 10px var(--main-box-shadow-color);
   z-index: 100;
 
   .button {
@@ -71,8 +60,8 @@ export default {
   }
 
   .button:nth-child(1) {
-    background-color: rgb(209, 209, 209);
-    color: black;
+    background-color: var(--main-button-bg-color);
+    color: var(--main-black-color);
   }
 }
 </style>

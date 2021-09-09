@@ -6,6 +6,6 @@
     .divider{
         height: 1px;
         width: 100%;
-        background-color: rgb(219, 219, 219);
+        background-color: var(--main-divider-color-white);
     }
 </style>

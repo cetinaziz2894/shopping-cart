@@ -31,7 +31,7 @@ export default {
   components: { Divider },
   computed: {
     item_cost() {
-      return this.product.price * this.product.quantity;
+      return (this.product.price * this.product.quantity).toFixed(2);
     },
     product_total() {
       return this.$store.getters.productQuantity(this.product);
@@ -101,8 +101,8 @@ export default {
     margin-top: 5px;
 
     button.icon {
-      border: 1px solid #adadad;
-      background-color: white;
+      border: 1px solid var(--main-border-color);
+      background-color: var(-main-bg-color);;
       border-radius: 50%;
       width: 30px;
       height: 30px;
@@ -118,7 +118,7 @@ export default {
       align-items: center;
       justify-content: center;
       margin: 0 10px;
-      border: 1px solid #adadad;
+      border: 1px solid var(--main-border-color);;
     }
   }
 
@@ -131,7 +131,7 @@ export default {
     p {
       margin: 0;
       margin-top: 5px;
-      font-weight: 400;
+      font-weight: 300;
       font-size: 20px;
       cursor: pointer;
     }

@@ -28,14 +28,15 @@ export default {
   width: 80%;
   margin: 0;
   padding: 15px;
-  background-color: white;
-  border: 0.5px solid #e2e2e2;
+  background-color: var(--main-bg-color);
+  border: 0.5px solid var(--main-border-color-white);
 
   h3.name {
     color: gray;
     font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
       "Lucida Sans", Arial, sans-serif;
     font-size: 1.2rem;
+    margin: 15px 0px;
   }
 
   .bottom {
@@ -44,10 +45,10 @@ export default {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: end;
+    align-items: center;
 
     h5.price {
-      font-size: 30px;
+      font-size: 20px;
       font-weight: 300;
       color: gray;
       margin: 0 10px;
@@ -56,19 +57,19 @@ export default {
   }
 
   .bottom * {
-      margin: 0 10px;
+    margin: 0 10px;
   }
 
   .image {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
   }
 }
 button.view-product-button {
   padding: 10px;
-  background-color: rgb(251, 100, 27);
+  background-color: var(--main-button-bg-color-orange);
   border: none;
-  color: white;
+  color: var(--main-bg-color);
   font-weight: bold;
   font-size: 1.15rem;
   font-weight: 400;
@@ -78,7 +79,29 @@ button.view-product-button {
 
 @media (min-width: 500px) {
   .card {
-    width: 350px;
+    width: 310px;
+  }
+}
+
+@media (max-width: 500px) {
+  .card {
+    width: 300px;
+
+    h3.name {
+      margin: 10px 0px;
+    }
+    .bottom {
+
+      height: 15%;
+      
+      h5.price {
+        font-size: 24px;
+      }
+    }
+  }
+
+  button.view-product-button {
+    font-size: 1rem;
   }
 }
 </style>

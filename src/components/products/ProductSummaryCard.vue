@@ -57,7 +57,7 @@ export default {
   }
 
   .bottom * {
-    margin: 0 10px;
+    margin: 10px;
   }
 
   .image {
@@ -79,7 +79,16 @@ button.view-product-button {
 
 @media (min-width: 500px) {
   .card {
-    width: 310px;
+    width: 430px;
+
+    .image {
+      width: 250px;
+      height: 250px;
+    }
+
+    .bottom h5.price{
+      font-size: 30px;
+    }
   }
 }
 
@@ -91,9 +100,8 @@ button.view-product-button {
       margin: 10px 0px;
     }
     .bottom {
-
       height: 15%;
-      
+
       h5.price {
         font-size: 24px;
       }
